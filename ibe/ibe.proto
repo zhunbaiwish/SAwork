@@ -1,0 +1,27 @@
+syntax = "proto3";
+package ibe;
+
+import "google/protobuf/empty.proto";
+
+service IbeService {
+  // 返回 ibe master public key 的 DER bytes
+  rpc GetIBEMasterPublic(google.protobuf.Empty) returns (MasterPub);
+  // 按 user_id 返回该ibe用户私钥 DER（PKG 生成并返回）
+  rpc GetIBEUserPrivateKey(UserId) returns (UserPriv);
+  // 返回 ibs master public key 的 DER bytes
+  rpc GetIBSMasterPublic(google.protobuf.Empty) returns (MasterPub);
+  // 按 user_id 返回该ibs用户私钥 DER（PKG 生成并返回）
+  rpc GetIBSUserPrivateKey(UserId) returns (UserPriv);
+}
+
+message MasterPub {
+  bytes der = 1;
+}
+
+message UserId {
+  string id = 1;
+}
+
+message UserPriv {
+  bytes der = 1;
+}

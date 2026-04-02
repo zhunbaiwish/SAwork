@@ -1,0 +1,27 @@
+# Build outputs
+build/
+*.o
+*.a
+*.so
+*.bin
+# Generated key files
+*.pub
+*.key
+*.key_*
+# gRPC generated files
+*.pb.cc
+*.pb.h
+*.grpc.pb.cc
+*.grpc.pb.h
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.cmake
+# OS
+.DS_Store
+Thumbs.db
+# claude file
+PROJECT_STATE.md
+TODO.md
