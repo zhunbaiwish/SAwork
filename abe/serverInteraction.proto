@@ -1,0 +1,47 @@
+syntax = "proto3";
+package serverInteraction;
+
+// ---------- 公共消息 ----------
+// [producer] ABE公钥请求
+message GetABEPublicKeyRequest
+{
+    int32 key_id = 1; // 1: 第一层公钥, 2: 第二层公钥, ...
+}
+
+message GetABEPublicKeyResponse
+{
+    bytes abe_public_key = 1; // ABE公钥
+}
+
+// [user] 数据使用者请求cpabe私钥
+message GetABEPrivateKeyRequest
+{
+    int32 layer = 1;
+    repeated string attrs = 2;
+}
+
+message GetABEPrivateKeyResponse
+{
+    string abe_secret_key = 1; //cpabe私钥
+}
+
+message ConvertPolicyRequest
+{
+    int32 layer = 1;
+    string policy = 2; 
+}
+
+message ConvertPolicyResponse
+{
+    string converted_policy = 1;
+}
+// ---------- AA 属性权威 ----------
+service AttributeAuthorityService
+{
+    // TODO: [producer] ABE公钥请求
+    rpc GetABEPublicKey(GetABEPublicKeyRequest) returns(GetABEPublicKeyResponse);
+    // TODO: [user] 用户获取cpabe私钥请求
+    rpc GetABEPrivateKey(GetABEPrivateKeyRequest) returns (GetABEPrivateKeyResponse);
+    // TODO
+    rpc ConvertPolicy(ConvertPolicyRequest) returns(ConvertPolicyResponse);
+}
